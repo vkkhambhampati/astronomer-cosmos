@@ -68,10 +68,12 @@ class AthenaAccessKeyProfileMapping(BaseProfileMapping):
             "aws_access_key_id": self.temporary_credentials.access_key,
             "aws_secret_access_key": self.get_env_var_format("aws_secret_access_key"),
         }
-
+        print("Temp")
+        print(profile)
         if self.temporary_credentials.token:
             profile["aws_session_token"] = self.get_env_var_format("aws_session_token")
-
+        print("Temp again")
+        print(profile)
         return self.filter_null(profile)
 
     @property
@@ -88,6 +90,11 @@ class AthenaAccessKeyProfileMapping(BaseProfileMapping):
 
         env_vars[env_secret_key_name] = str(self.temporary_credentials.secret_key)
         env_vars[env_session_token_name] = str(self.temporary_credentials.token)
+        env_vars['AWS_ACCESS_KEY_ID'] = self.profile['aws_access_key_id']
+        env_vars['AWS_SECRET_ACCESS_KEY'] = self.profile['aws_secret_access_key']
+        env_vars['AWS_SESSION_TOKEN'] = self.profile['aws_session_token']
+        print("Temp again again")
+        print(env_vars)
 
         return env_vars
 
