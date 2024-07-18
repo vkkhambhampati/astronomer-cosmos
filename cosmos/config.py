@@ -291,6 +291,8 @@ class ProfileConfig:
             if is_profile_cache_enabled():
                 logger.info("Profile caching is enable.")
                 cached_profile_path = self._get_profile_path(use_mock_values)
+                logger.info("This is temp step")
+                logger.info(self.profile_mapping.profile)
                 env_vars = {} if use_mock_values else self.profile_mapping.env_vars
                 yield cached_profile_path, env_vars
             else:
