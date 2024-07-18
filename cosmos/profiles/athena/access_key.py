@@ -61,6 +61,8 @@ class AthenaAccessKeyProfileMapping(BaseProfileMapping):
         """Gets profile. The password is stored in an environment variable."""
 
         self.temporary_credentials = self._get_temporary_credentials()  # type: ignore
+        print("These are actual creds")
+        print(self.temporary_credentials)
 
         profile = {
             **self.mapped_params,
